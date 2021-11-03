@@ -7,12 +7,11 @@ import Animated, {
   multiply,
 } from "react-native-reanimated";
 import { onScrollEvent, useScrollHandler, useValue } from "react-native-redash";
-import Slide, { SLIDE_HEIGHT } from "./Slide";
+import Slide, { SLIDE_HEIGHT, BORDER_RADIUS } from "./Slide";
 import Subslide from "./Subslide";
 import Dot from "./Dot";
 // interface ComponentNameProps {}
 
-const BORDER_RADIUS = 75;
 const { width, height } = Dimensions.get("window");
 const styles = StyleSheet.create({
   container: {

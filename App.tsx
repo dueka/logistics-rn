@@ -1,8 +1,9 @@
 import * as React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import Onboarding from "./src/Authentication/Onboarding";
-import { LoadAssets } from "./src/components";
-
+// import Welcome from "./src/Authentication/Welcome";
+import { LoadAssets, theme } from "./src/components";
+import { ThemeProvider } from "@shopify/restyle";
 const AuthenticationStack = createStackNavigator();
 
 const fonts = {
@@ -20,14 +21,17 @@ const AuthenticationNavigator = () => {
       }}
     >
       <AuthenticationStack.Screen name="Onboarding" component={Onboarding} />
+      {/* <AuthenticationStack.Screen name="Welcome" component={Welcome} /> */}
     </AuthenticationStack.Navigator>
   );
 };
 
 export default function App() {
   return (
-    <LoadAssets {...{ fonts }}>
-      <AuthenticationNavigator />
-    </LoadAssets>
+    <ThemeProvider theme={theme}>
+      <LoadAssets {...{ fonts }}>
+        <AuthenticationNavigator />
+      </LoadAssets>
+    </ThemeProvider>
   );
 }
