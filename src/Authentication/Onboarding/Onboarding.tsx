@@ -47,18 +47,21 @@ const slides = [
     subtitle: "We Always Deliver.",
     description: "The best delivery drivers you have ever seen",
     color: "rgba(191,234,245,1)",
+    picture: require("./assets/1.jpg"),
   },
   {
     title: "Delivery",
     subtitle: "Last mile delivery serivce.",
     description: "Carrying your packages for you. ",
     color: "rgba(190,236,196,1)",
+    picture: require("./assets/2.jpg"),
   },
   {
     title: "Service",
     subtitle: "Quality Drivers.",
     description: "Delivering more than parcels.",
     color: "rgba(255,228,217,1)",
+    picture: require("./assets/3.jpg"),
   },
   //   {
   //     title: "Service.",
@@ -88,8 +91,8 @@ const Onboarding = () => {
           bounces={false}
           {...scrollHandler}
         >
-          {slides.map(({ title }, index) => (
-            <Slide key={index} right={!!(index % 2)} {...{ title }} />
+          {slides.map(({ title, picture }, index) => (
+            <Slide key={index} right={!!(index % 2)} {...{ title, picture }} />
           ))}
         </Animated.ScrollView>
       </Animated.View>
