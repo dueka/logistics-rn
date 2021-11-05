@@ -46,7 +46,11 @@ const slides = [
     subtitle: "We Always Deliver.",
     description: "The best delivery drivers you have ever seen",
     color: "rgba(191,234,245,1)",
-    picture: require("./assets/1.jpg"),
+    picture: {
+      src: require("./assets/1.jpg"),
+      // width: 2513,
+      // height: 3583,
+    },
   },
   {
     title: "Delivery",

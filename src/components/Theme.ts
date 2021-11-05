@@ -23,6 +23,7 @@ const theme: BaseTheme = createTheme({
     title: "#2CB9B0",
     text: "rgba(12,12,52,0.7)",
     white: "white",
+    grey: "rgba(12, 13, 52, 0.05)",
   },
   spacing: {
     s: 8,
@@ -59,7 +60,12 @@ const theme: BaseTheme = createTheme({
     body: {
       fontSize: 16,
       lineHeight: 24,
-      fontFamily: "SFProText-Semibold",
+      fontFamily: "SFProText-Regular",
+      color: "text",
+    },
+    button: {
+      fontSize: 15,
+      fontFamily: "SFProText-Medium",
       color: "text",
     },
   },
