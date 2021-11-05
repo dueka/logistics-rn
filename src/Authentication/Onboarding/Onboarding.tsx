@@ -48,8 +48,8 @@ const slides = [
     color: "rgba(191,234,245,1)",
     picture: {
       src: require("./assets/1.jpg"),
-      // width: 2513,
-      // height: 3583,
+      width: 2513,
+      height: 3583,
     },
   },
   {
@@ -57,14 +57,24 @@ const slides = [
     subtitle: "Last mile delivery serivce.",
     description: "Carrying your packages for you. ",
     color: "rgba(190,236,196,1)",
-    picture: require("./assets/2.jpg"),
+    // picture: require("./assets/2.jpg"),
+    picture: {
+      src: require("./assets/3.jpg"),
+      width: 2738,
+      height: 3544,
+    },
   },
   {
     title: "Service",
     subtitle: "Quality Drivers.",
     description: "Delivering more than parcels.",
     color: "rgba(255,228,217,1)",
-    picture: require("./assets/3.jpg"),
+    // picture: require("./assets/3.jpg"),
+    picture: {
+      src: require("./assets/3.jpg"),
+      width: 2738,
+      height: 3244,
+    },
   },
   //   {
   //     title: "Service.",
