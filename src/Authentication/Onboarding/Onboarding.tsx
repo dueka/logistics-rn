@@ -1,29 +1,21 @@
 import React, { useRef } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  Dimensions,
-  Image,
-  ImageRequireSource,
-} from "react-native";
-// import { ScrollView } from "react-native-gesture-handler";
+import { View, StyleSheet, Dimensions, Image } from "react-native";
 import Animated, {
   divide,
   Extrapolate,
-  interpolate,
   interpolateColors,
   interpolateNode,
   multiply,
 } from "react-native-reanimated";
-import { onScrollEvent, useScrollHandler, useValue } from "react-native-redash";
-import Slide, { SLIDE_HEIGHT, BORDER_RADIUS } from "./Slide";
+import { useScrollHandler } from "react-native-redash";
+import Slide, { SLIDE_HEIGHT } from "./Slide";
 import Subslide from "./Subslide";
 import Dot from "./Dot";
 import { theme } from "../../components";
+import { Routes, StackNavigationProps } from "../../components/Navigation";
 // interface ComponentNameProps {}
 
-const { width, height } = Dimensions.get("window");
+const { width } = Dimensions.get("window");
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -54,7 +46,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    // backgroundColor: "rgba(100, 200, 300, 0.5)",
   },
 });
 
@@ -65,7 +56,7 @@ const slides = [
     description: "The best delivery drivers you have ever seen.",
     color: "rgba(191,234,245,1)",
     picture: {
-      src: require("./assets/1.jpg"),
+      src: require("../assets/1.jpg"),
       width: 2513,
       height: 3583,
     },
@@ -76,7 +67,7 @@ const slides = [
     description: "Carrying your packages for you. ",
     color: "rgba(190,236,196,1)",
     picture: {
-      src: require("./assets/2.jpg"),
+      src: require("../assets/2.jpg"),
       width: 2513,
       height: 3583,
     },
@@ -88,26 +79,17 @@ const slides = [
     color: "rgba(255,228,217,1)",
     // picture: require("./assets/3.jpg"),
     picture: {
-      src: require("./assets/3.jpg"),
+      src: require("../assets/3.jpg"),
       width: 2513,
       height: 3583,
     },
   },
-  //   {
-  //     title: "Service.",
-  //     subtitle: "Stress-Free Deliveries.",
-  //     description: "Delivering more than parcels.",
-  //     color: "rgba(255,221,221,1)",
-  //   },
 ];
-// picture: {
-//   src: ImageRequireSource;
-//   width: number;
-//   height: number;
-// };
-const Onboarding = () => {
+
+const Onboarding = ({
+  navigation,
+}: StackNavigationProps<Routes, "Onboarding">) => {
   const scroll = useRef<Animated.ScrollView>(null);
-  // const x = useValue(0);
   const { scrollHandler, x } = useScrollHandler();
   const backgroundColor = interpolateColors(x, {
     inputRange: slides.map((_, i) => i * width),
@@ -167,28 +149,30 @@ const Onboarding = () => {
           </View>
           <Animated.View
             style={{
-              // width: width * slides.length,
-              // width: width,
               flex: 1,
               flexDirection: "row",
               width: width * slides.length,
               transform: [{ translateX: multiply(x, -1) }],
             }}
           >
-            {slides.map(({ subtitle, description }, index) => (
-              <Subslide
-                key={index}
-                onPress={() => {
-                  if (scroll.current) {
-                    scroll.current
-                      .getNode()
-                      .scrollTo({ x: width * (index + 1), animated: true });
-                  }
-                }}
-                last={index === slides.length - 1}
-                {...{ subtitle, description, x }}
-              />
-            ))}
+            {slides.map(({ subtitle, description }, index) => {
+              const last = index === slides.length - 1;
+              return (
+                <Subslide
+                  key={index}
+                  onPress={() => {
+                    if (last) {
+                      navigation.navigate("Welcome");
+                    } else {
+                      scroll.current
+                        ?.getNode()
+                        .scrollTo({ x: width * (index + 1), animated: true });
+                    }
+                  }}
+                  {...{ subtitle, description, last }}
+                />
+              );
+            })}
           </Animated.View>
         </View>
       </View>

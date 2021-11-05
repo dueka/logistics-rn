@@ -1,10 +1,10 @@
 import * as React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import Onboarding from "./src/Authentication/Onboarding";
-// import Welcome from "./src/Authentication/Welcome";
+import Welcome from "./src/Authentication/Welcome";
 import { LoadAssets, theme } from "./src/components";
 import { ThemeProvider } from "@shopify/restyle";
-const AuthenticationStack = createStackNavigator();
+import { Routes } from "./src/components/Navigation";
 
 const fonts = {
   "SFProText-Bold": require("./assets/fonts/SFProText-Bold.ttf"),
@@ -13,6 +13,7 @@ const fonts = {
   "SFProText-Medium": require("./assets/fonts/SFProText-Medium.ttf"),
 };
 
+const AuthenticationStack = createStackNavigator<Routes>();
 const AuthenticationNavigator = () => {
   return (
     <AuthenticationStack.Navigator
@@ -22,7 +23,7 @@ const AuthenticationNavigator = () => {
       }}
     >
       <AuthenticationStack.Screen name="Onboarding" component={Onboarding} />
-      {/* <AuthenticationStack.Screen name="Welcome" component={Welcome} /> */}
+      <AuthenticationStack.Screen name="Welcome" component={Welcome} />
     </AuthenticationStack.Navigator>
   );
 };
