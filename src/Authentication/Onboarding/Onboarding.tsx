@@ -1,15 +1,26 @@
 import React, { useRef } from "react";
-import { View, Text, StyleSheet, Dimensions } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Dimensions,
+  Image,
+  ImageRequireSource,
+} from "react-native";
 // import { ScrollView } from "react-native-gesture-handler";
 import Animated, {
   divide,
+  Extrapolate,
+  interpolate,
   interpolateColors,
+  interpolateNode,
   multiply,
 } from "react-native-reanimated";
 import { onScrollEvent, useScrollHandler, useValue } from "react-native-redash";
 import Slide, { SLIDE_HEIGHT, BORDER_RADIUS } from "./Slide";
 import Subslide from "./Subslide";
 import Dot from "./Dot";
+import { theme } from "../../components";
 // interface ComponentNameProps {}
 
 const { width, height } = Dimensions.get("window");
@@ -22,17 +33,24 @@ const styles = StyleSheet.create({
     height: SLIDE_HEIGHT,
     borderBottomRightRadius: 75,
   },
+  underlay: {
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: "flex-end",
+    alignItems: "center",
+    borderBottomRightRadius: theme.borderRadii.xl,
+    overflow: "hidden",
+  },
   footer: {
     flex: 1,
   },
   footerContent: {
     flex: 1,
     backgroundColor: "white",
-    borderTopLeftRadius: BORDER_RADIUS,
+    borderTopLeftRadius: theme.borderRadii.xl,
   },
   pagination: {
     ...StyleSheet.absoluteFillObject,
-    height: BORDER_RADIUS,
+    height: theme.borderRadii.xl,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
@@ -44,7 +62,7 @@ const slides = [
   {
     title: "Optimized",
     subtitle: "We Always Deliver.",
-    description: "The best delivery drivers you have ever seen",
+    description: "The best delivery drivers you have ever seen.",
     color: "rgba(191,234,245,1)",
     picture: {
       src: require("./assets/1.jpg"),
@@ -54,14 +72,13 @@ const slides = [
   },
   {
     title: "Delivery",
-    subtitle: "Last mile delivery serivce.",
+    subtitle: "Last mile delivery.",
     description: "Carrying your packages for you. ",
     color: "rgba(190,236,196,1)",
-    // picture: require("./assets/2.jpg"),
     picture: {
-      src: require("./assets/3.jpg"),
-      width: 2738,
-      height: 3544,
+      src: require("./assets/2.jpg"),
+      width: 2513,
+      height: 3583,
     },
   },
   {
@@ -72,8 +89,8 @@ const slides = [
     // picture: require("./assets/3.jpg"),
     picture: {
       src: require("./assets/3.jpg"),
-      width: 2738,
-      height: 3244,
+      width: 2513,
+      height: 3583,
     },
   },
   //   {
@@ -83,7 +100,11 @@ const slides = [
   //     color: "rgba(255,221,221,1)",
   //   },
 ];
-
+// picture: {
+//   src: ImageRequireSource;
+//   width: number;
+//   height: number;
+// };
 const Onboarding = () => {
   const scroll = useRef<Animated.ScrollView>(null);
   // const x = useValue(0);
@@ -95,6 +116,31 @@ const Onboarding = () => {
   return (
     <View style={styles.container}>
       <Animated.View style={[styles.slider, { backgroundColor }]}>
+        {slides.map(({ picture }, index) => {
+          const opacity = interpolateNode(x, {
+            inputRange: [
+              (index - 1) * width,
+              index * width,
+              (index + 1) * width,
+            ],
+            outputRange: [0, 1, 0],
+            extrapolate: Extrapolate.CLAMP,
+          });
+          return (
+            <Animated.View style={[styles.underlay, { opacity }]} key={index}>
+              <Image
+                source={picture.src}
+                style={{
+                  width: width - theme.borderRadii.xl,
+                  height:
+                    ((width - theme.borderRadii.xl) * picture.height) /
+                    picture.width,
+                }}
+              />
+            </Animated.View>
+          );
+        })}
+
         <Animated.ScrollView
           ref={scroll}
           horizontal
