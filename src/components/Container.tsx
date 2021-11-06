@@ -1,7 +1,9 @@
 import React, { ReactNode } from "react";
+// import { useTheme } from "@shopify/restyle";
 import { Image, Dimensions, StyleSheet, StatusBar } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Box, theme } from ".";
+import { Box } from ".";
+import { useTheme } from "./Theme";
 
 export const assets = [require("./assets/patterns/1.jpg")];
 const { width } = Dimensions.get("window");
@@ -13,6 +15,7 @@ interface ContainerProps {
 }
 const Container = ({ children, footer }: ContainerProps) => {
   const insets = useSafeAreaInsets();
+  const theme = useTheme();
   return (
     <Box flex={1} backgroundColor="primary">
       <StatusBar barStyle="light-content" />

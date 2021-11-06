@@ -5,7 +5,7 @@ import {
   TextInput as RNTextInput,
   TextInputProps as RNTextInputProps,
 } from "react-native";
-import { Box, theme } from "../../components";
+import { Box, useTheme } from "../../components";
 
 interface TextInputProps extends RNTextInputProps {
   touched?: boolean;
@@ -13,9 +13,9 @@ interface TextInputProps extends RNTextInputProps {
   icon: string;
 }
 
-const SIZE = theme.borderRadii.m * 2;
-
 const TextInput = ({ icon, touched, error, ...props }: TextInputProps) => {
+  const theme = useTheme();
+  const SIZE = theme.borderRadii.m * 2;
   const reColor = !touched ? "text" : error ? "danger" : "secondary";
   const color = theme.colors[reColor];
 
