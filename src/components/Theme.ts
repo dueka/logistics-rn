@@ -25,12 +25,12 @@ const theme: BaseTheme = createTheme({
     mainBackground: palette.white,
     cardPrimaryBackground: palette.purplePrimary,
     primary: palette.default,
-    title: "#2CB9B0",
-    text: "rgba(12,12,52,0.7)",
-    button: "#0C0D34",
+    secondary: "#2CB9B0",
+    danger: "#FF0058",
+    text: "rgba(12,12,52,0.5)",
     white: "white",
-    grey: "rgba(12, 13, 52, 0.05)",
-    slideGrey: "#F4F0EF",
+    grey: "#F4F0EF",
+    darkGrey: "#8A8D90",
   },
   spacing: {
     s: 8,
@@ -61,7 +61,7 @@ const theme: BaseTheme = createTheme({
     title1: {
       fontSize: 24,
       lineHeight: 30,
-      fontFamily: "SFProText-Semibold",
+      fontFamily: "SFProText-Bold",
       color: "primary",
     },
     title2: {
