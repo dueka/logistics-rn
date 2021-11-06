@@ -1,4 +1,4 @@
- {
+{
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "strict": true,
@@ -19,7 +19,6 @@
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "forceConsistentCasingFileNames": true,
-
+    "forceConsistentCasingInFileNames": true
   }
 }
