@@ -1,9 +1,10 @@
 import React, { ReactElement, useCallback, useEffect, useState } from "react";
-import  AsyncStorage  from "@react-native-async-storage/async-storage";
-import AppLoading  from "expo-app-loading";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import AppLoading from "expo-app-loading";
 import { Asset } from "expo-asset";
 import * as Font from "expo-font";
-import { InitialState, NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer } from "@react-navigation/native";
+import { InitialState } from "@react-navigation/core";
 import Constants from "expo-constants";
 
 const NAVIGATION_STATE_KEY = `NAVIGATION_STATE_KEY-${Constants.manifest.sdkVersion}`;
