@@ -2,7 +2,7 @@ import { useTheme } from "@shopify/restyle";
 import React, { ReactNode } from "react";
 import { StyleSheet } from "react-native";
 import { RectButton } from "react-native-gesture-handler";
-import { Text } from ".";
+import { Text } from "./Theme";
 import { Theme } from "./Theme";
 
 const styles = StyleSheet.create({
