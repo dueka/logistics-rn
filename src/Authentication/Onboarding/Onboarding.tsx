@@ -53,10 +53,11 @@ const slides = [
   {
     title: "Optimized",
     subtitle: "We Always Deliver.",
-    description: "The best delivery drivers you have ever seen.",
+    description: "The best delivery drivers.",
     color: "rgba(191,234,245,1)",
     picture: {
-      src: require("../assets/1.jpg"),
+      src: require("../assets/2.jpg"),
+
       width: 2513,
       height: 3583,
     },
@@ -67,7 +68,7 @@ const slides = [
     description: "Carrying your packages for you. ",
     color: "rgba(190,236,196,1)",
     picture: {
-      src: require("../assets/2.jpg"),
+      src: require("../assets/3.jpg"),
       width: 2513,
       height: 3583,
     },
@@ -77,9 +78,8 @@ const slides = [
     subtitle: "Quality Drivers.",
     description: "Delivering more than parcels.",
     color: "rgba(255,228,217,1)",
-    // picture: require("./assets/3.jpg"),
     picture: {
-      src: require("../assets/3.jpg"),
+      src: require("../assets/1.jpg"),
       width: 2513,
       height: 3583,
     },

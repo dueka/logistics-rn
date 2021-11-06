@@ -1,5 +1,6 @@
 import * as React from "react";
 import { ThemeProvider } from "@shopify/restyle";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import { LoadAssets, theme } from "./src/components";
 import {
   assets as authenticationAssets,
@@ -18,7 +19,9 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <LoadAssets {...{ fonts, assets }}>
-        <AuthenticationNavigator />
+        <SafeAreaProvider>
+          <AuthenticationNavigator />
+        </SafeAreaProvider>
       </LoadAssets>
     </ThemeProvider>
   );

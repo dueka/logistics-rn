@@ -7,9 +7,9 @@ import theme, { Box, Text } from "../../components/Theme";
 
 const { width } = Dimensions.get("window");
 const picture = {
-  src: require("../assets/1.jpg"),
-  width: 3383,
-  height: 5074,
+  src: require("../assets/4.png"),
+  width: 1280,
+  height: 717,
 };
 export const assets = [picture.src];
 const Welcome = ({ navigation }: StackNavigationProps<Routes, "Welcome">) => {
