@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import { Image, Dimensions, StyleSheet, StatusBar } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Box } from ".";
+import { Box } from "./Theme";
 import { useTheme } from "./Theme";
 
 export const assets = [require("./assets/patterns/1.jpg")];
