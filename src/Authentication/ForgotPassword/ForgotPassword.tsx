@@ -11,16 +11,13 @@ const ForgotPasswordSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email address").required("Required"),
 });
 
-const ForgotPassword = ({}: StackNavigationProps<Routes, "ForgotPassword">) => {
+const ForgotPassword = ({
+  navigation,
+}: StackNavigationProps<Routes, "ForgotPassword">) => {
   const { handleChange, handleBlur, handleSubmit, errors, touched } = useFormik(
     {
       initialValues: { email: "" },
-      onSubmit: (values, actions) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          actions.setSubmitting(false);
-        }, 1000);
-      },
+      onSubmit: () => navigation.navigate("PasswordChanged"),
       validationSchema: ForgotPasswordSchema,
     }
   );
