@@ -1,5 +1,5 @@
 import React from "react";
-import { TouchableWithoutFeedback } from "react-native-gesture-handler";
+import { BorderlessButton } from "react-native-gesture-handler";
 import { Box, Text } from "../../components";
 
 interface FooterProps {
@@ -12,12 +12,12 @@ const Footer = ({ onPress, title, action }: FooterProps) => {
   return (
     <>
       <Box alignItems="center" marginTop="m">
-        <TouchableWithoutFeedback {...{ onPress }}>
+        <BorderlessButton {...{ onPress }}>
           <Text variant="button" color="white">
             <Text>{`${title} `}</Text>
             <Text color="secondary">{action}</Text>
           </Text>
-        </TouchableWithoutFeedback>
+        </BorderlessButton>
       </Box>
     </>
   );

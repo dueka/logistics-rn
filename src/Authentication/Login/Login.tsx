@@ -6,6 +6,7 @@ import Checkbox from "../Form/Checkbox";
 import TextInput from "../Form/TextInput";
 import Footer from "../components/Footer";
 import { Routes, StackNavigationProps } from "../../components/Navigation";
+import { BorderlessButton } from "react-native-gesture-handler";
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email address").required("Required"),
@@ -26,12 +27,7 @@ const Login = ({ navigation }: StackNavigationProps<Routes, "Login">) => {
     setFieldValue,
   } = useFormik({
     initialValues: { email: "", password: "", remember: false },
-    onSubmit: (values, actions) => {
-      setTimeout(() => {
-        alert(JSON.stringify(values, null, 2));
-        actions.setSubmitting(false);
-      }, 1000);
-    },
+    onSubmit: () => navigation.navigate("Home"),
     validationSchema: LoginSchema,
   });
   const password = useRef<typeof TextInput>(null);
@@ -68,12 +64,13 @@ const Login = ({ navigation }: StackNavigationProps<Routes, "Login">) => {
             />
           </Box>
           <Box alignItems="flex-end">
-            <Text
-              color="secondary"
+            <BorderlessButton
               onPress={() => navigation.navigate("ForgotPassword")}
             >
-              Forgot Password
-            </Text>
+              <Text variant="button" color="secondary">
+                Forgot password?
+              </Text>
+            </BorderlessButton>
           </Box>
           <TextInput
             ref={password}
@@ -100,11 +97,8 @@ const Login = ({ navigation }: StackNavigationProps<Routes, "Login">) => {
               checked={values.remember}
               onChange={() => setFieldValue("remember", !values.remember)}
             />
-            {/* <Button variant="transparent" onPress={() => true}>
-              <Text color="secondary">Forgot Password</Text>
-            </Button> */}
           </Box>
-          <Box alignItems="center" marginTop="m">
+          <Box alignItems="center" marginVertical="m">
             <Button
               variant="primary"
               onPress={handleSubmit}
