@@ -1,44 +1,49 @@
 import React from "react";
 import { Feather as Icon } from "@expo/vector-icons";
-import { Box, Button, Container, Text } from "../../components";
+import {
+  Box,
+  Button,
+  Container,
+  RoundedIcon,
+  RoundedIconButton,
+  Text,
+} from "../../components";
 import { Routes, StackNavigationProps } from "../../components/Navigation";
-import { CloseButton } from "../../components";
-import { useTheme } from "@shopify/restyle";
 
 const SIZE = 80;
 const PasswordChanged = ({
   navigation,
 }: StackNavigationProps<Routes, "PasswordChanged">) => {
-  const theme = useTheme();
-  const color = theme.colors.secondary;
   return (
     <Container
-      pattern={0}
+      pattern={2}
       footer={
         <Box flexDirection="row" justifyContent="center">
-          <CloseButton onPress={() => navigation.pop()} />
+          <RoundedIconButton
+            backgroundColor="white"
+            color="primary"
+            name="x"
+            size={60}
+            onPress={() => navigation.pop()}
+          />
         </Box>
       }
     >
-      <Box flex={1} justifyContent="center" alignItems="center">
-        <Box
+      <Box flex={1} justifyContent="center" alignItems="center" padding="xl">
+        <RoundedIcon
+          name="check"
+          size={SIZE}
           backgroundColor="secondary"
-          justifyContent="center"
-          alignItems="center"
-          style={{ height: SIZE, width: SIZE, borderRadius: SIZE }}
-        >
-          <Text color="primary">
-            <Icon name="check" size={50} style={{ textAlign: "center" }} />
-          </Text>
-        </Box>
+          color="primary"
+        />
 
         <Box padding="s">
-          <Text variant="title1" textAlign="center" marginBottom="l">
+          <Text variant="title1" textAlign="center" marginVertical="l">
             Your password was successfully changed.
           </Text>
-          {/* <Text variant="body" textAlign="center" marginBottom="l">
-          Let's know relevant details about you.
-        </Text> */}
+          <Text variant="body" textAlign="center" marginBottom="l">
+            Close this window and login again.
+          </Text>
           <Box>
             <Box alignItems="center" marginTop="m">
               <Button

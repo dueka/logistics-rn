@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
 });
 
 interface ButtonProps {
-  variant: "default" | "primary" | "transparent";
+  variant: "default" | "primary";
   label?: string;
   onPress: () => void;
   children?: ReactNode;
@@ -30,11 +30,7 @@ interface ButtonProps {
 const Button = ({ variant, label, onPress, children }: ButtonProps) => {
   const theme = useTheme<Theme>();
   const backgroundColor =
-    variant === "primary"
-      ? theme.colors.primary
-      : variant === "transparent"
-      ? "transparent"
-      : theme.colors.grey;
+    variant === "primary" ? theme.colors.primary : theme.colors.grey;
   const color =
     variant === "primary" ? theme.colors.white : theme.colors.default;
   return (
