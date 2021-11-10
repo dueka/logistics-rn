@@ -2,7 +2,7 @@ import React from "react";
 import { Feather as Icon } from "@expo/vector-icons";
 import { Box, Button, Container, Text } from "../../components";
 import { Routes, StackNavigationProps } from "../../components/Navigation";
-import CloseButton from "../components/CloseButton";
+import { CloseButton } from "../../components";
 import { useTheme } from "@shopify/restyle";
 
 const SIZE = 80;
@@ -13,6 +13,7 @@ const PasswordChanged = ({
   const color = theme.colors.secondary;
   return (
     <Container
+      pattern={0}
       footer={
         <Box flexDirection="row" justifyContent="center">
           <CloseButton onPress={() => navigation.pop()} />

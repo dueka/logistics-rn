@@ -24,13 +24,13 @@ const ForgotPassword = ({
 
   const footer = (
     <Footer
-      title="Don't work?"
+      title="Doesn't work?"
       action="Contact support"
       onPress={() => Linking.openURL("mailto:ekanemd@live.com")}
     />
   );
   return (
-    <Container {...{ footer }}>
+    <Container pattern={2} {...{ footer }}>
       <Box padding="xl" justifyContent="center" flex={1}>
         <Text variant="title1" textAlign="center" marginBottom="l">
           Forgot Password?
