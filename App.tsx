@@ -9,6 +9,7 @@ import {
   AuthenticationNavigator,
 } from "./src/Authentication";
 import { HomeNavigator } from "./src/Home";
+import { AppRoutes } from "./src/components/Navigation";
 const assets = [...authenticationAssets];
 const fonts = {
   "SFProText-Bold": require("./assets/fonts/SFProText-Bold.ttf"),
@@ -17,12 +18,7 @@ const fonts = {
   "SFProText-Medium": require("./assets/fonts/SFProText-Medium.ttf"),
 };
 
-type AppStackRoutes = {
-  Authentication: undefined;
-  Home: undefined;
-};
-
-const AppStack = createStackNavigator<AppStackRoutes>();
+const AppStack = createStackNavigator<AppRoutes>();
 
 export default function App() {
   return (

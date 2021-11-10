@@ -1,12 +1,15 @@
 import React, { useRef } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { BorderlessButton } from "react-native-gesture-handler";
+import { CompositeNavigationProp } from "@react-navigation/core";
+import { DrawerNavigationProp } from "@react-navigation/drawer";
+import { StackNavigationProp } from "@react-navigation/stack";
 import { Box, Button, Container, Text } from "../../components";
 import Checkbox from "../Form/Checkbox";
 import TextInput from "../Form/TextInput";
 import Footer from "../components/Footer";
-import { Routes, StackNavigationProps } from "../../components/Navigation";
-import { BorderlessButton } from "react-native-gesture-handler";
+import { AuthenticationRoutes, HomeRoutes } from "../../components/Navigation";
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email address").required("Required"),
@@ -16,7 +19,13 @@ const LoginSchema = Yup.object().shape({
     .required("Required"),
 });
 
-const Login = ({ navigation }: StackNavigationProps<Routes, "Login">) => {
+interface LoginProps {
+  navigation: CompositeNavigationProp<
+    StackNavigationProp<AuthenticationRoutes, "Login">,
+    DrawerNavigationProp<HomeRoutes, "HomeScreen">
+  >;
+}
+const Login = ({ navigation }: LoginProps) => {
   const {
     handleChange,
     handleBlur,
