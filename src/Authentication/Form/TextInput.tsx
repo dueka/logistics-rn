@@ -1,4 +1,4 @@
-import React, { forwardRef, RefObject } from "react";
+import React, { forwardRef } from "react";
 import { Feather as Icon } from "@expo/vector-icons";
 import {
   StyleSheet,

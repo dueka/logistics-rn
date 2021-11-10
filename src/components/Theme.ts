@@ -33,6 +33,10 @@ export const theme: BaseTheme = createTheme({
     white: "white",
     grey: "#F4F0EF",
     darkGrey: "#8A8D90",
+    orange: "#FE5E33",
+    yellow: "#FFC641",
+    pink: "#FF87A2",
+    violet: "#442CB9",
   },
   spacing: {
     s: 8,
@@ -82,6 +86,7 @@ export const theme: BaseTheme = createTheme({
       fontSize: 15,
       fontFamily: "SFProText-Medium",
       color: "text",
+      textAlign: "center",
     },
   },
 });

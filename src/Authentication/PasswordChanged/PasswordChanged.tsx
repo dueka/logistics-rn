@@ -8,15 +8,12 @@ import {
   RoundedIconButton,
   Text,
 } from "../../components";
-import {
-  AuthenticationRoutes,
-  StackNavigationProps,
-} from "../../components/Navigation";
+import { AuthNavigationProps } from "../../components/Navigation";
 
 const SIZE = 80;
 const PasswordChanged = ({
   navigation,
-}: StackNavigationProps<AuthenticationRoutes, "PasswordChanged">) => {
+}: AuthNavigationProps<"PasswordChanged">) => {
   return (
     <Container
       pattern={2}
@@ -27,7 +24,8 @@ const PasswordChanged = ({
             color="primary"
             name="x"
             size={60}
-            onPress={() => navigation.pop()}
+            onPress={() => navigation.navigate("Login")}
+            iconRatio={0.5}
           />
         </Box>
       }
@@ -38,6 +36,7 @@ const PasswordChanged = ({
           size={SIZE}
           backgroundColor="secondary"
           color="primary"
+          iconRatio={0.5}
         />
 
         <Box padding="s">
