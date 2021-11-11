@@ -5,6 +5,7 @@ import DrawerContent, { DRAWER_WIDTH } from "./Drawer/Drawer";
 import { HomeRoutes } from "../components/Navigation";
 
 const Drawer = createDrawerNavigator<HomeRoutes>();
+export { assets } from "./Drawer";
 export const HomeNavigator = () => (
   <Drawer.Navigator
     screenOptions={{

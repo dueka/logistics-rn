@@ -4,7 +4,7 @@ import { Theme } from "./Theme";
 import { Box, Text } from ".";
 
 export interface RoundedIconProps {
-  name: string;
+  name?: string;
   size: number;
   color: keyof Theme["colors"];
   backgroundColor: keyof Theme["colors"];

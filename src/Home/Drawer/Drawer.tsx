@@ -1,12 +1,12 @@
 import React from "react";
 import { Image, Dimensions } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Box, RoundedIconButton, Text } from "../../components";
+import { Box, Header, RoundedIconButton, Text } from "../../components";
 import { theme } from "../../components/Theme";
 import DrawerItem, { DrawerItemProps } from "./DrawerItem";
 
 const { width } = Dimensions.get("window");
 export const DRAWER_WIDTH = width * 0.8;
+export const assets = [require("../../components/assets/patterns/4.jpg")];
 const aspectRatio = 750 / 1125;
 const height = width * aspectRatio;
 const items: DrawerItemProps[] = [
@@ -32,12 +32,11 @@ const items: DrawerItemProps[] = [
     icon: "log-out",
     label: "Logout",
     screen: "Logout",
-    color: "violet",
+    color: "primary",
   },
 ];
 
 const DrawerContent = () => {
-  const insets = useSafeAreaInsets();
   return (
     <Box flex={1}>
       <Box flex={0.2} backgroundColor="white">
@@ -49,24 +48,11 @@ const DrawerContent = () => {
           bottom={0}
           borderBottomRightRadius="xl"
           backgroundColor="primary"
-          flexDirection="row"
-          justifyContent="space-between"
-          paddingHorizontal="m"
-          style={{ paddingTop: insets.top }}
         >
-          <RoundedIconButton
-            size={24}
-            name="x"
-            color="white"
-            backgroundColor="primary"
-            onPress={() => true}
-          />
-          <Text color="white">Profile</Text>
-          <RoundedIconButton
-            size={24}
-            color="white"
-            backgroundColor="primary"
-            onPress={() => true}
+          <Header
+            title="Profile"
+            left={{ icon: "x", onPress: () => true }}
+            right={{ onPress: () => true }}
           />
         </Box>
       </Box>
@@ -74,7 +60,7 @@ const DrawerContent = () => {
         <Box flex={1} backgroundColor="primary" />
         <Box flex={1} backgroundColor="secondary" />
         <Image
-          source={require("../../components/assets/patterns/1.jpg")}
+          source={assets[0]}
           style={{
             position: "absolute",
             bottom: -height * 0.61,
@@ -97,12 +83,13 @@ const DrawerContent = () => {
           padding="l"
         >
           <Box
-            top={-theme.spacing.xl}
+            position="absolute"
+            left={DRAWER_WIDTH / 2 - 50}
+            top={-50}
             backgroundColor="secondary"
             width={100}
             height={100}
             style={{ borderRadius: 50 }}
-            alignSelf="center"
           />
           <Box marginVertical="m">
             <Text variant="title1" textAlign="center">
@@ -124,12 +111,12 @@ const DrawerContent = () => {
         height={height * 0.61}
       >
         <Image
-          source={require("../../components/assets/patterns/1.jpg")}
+          source={assets[0]}
           style={{
-            position: "absolute",
-            left: 0,
-            right: 0,
-            top: -height * (1 - 0.61),
+            // position: "absolute",
+            // left: 0,
+            // right: 0,
+            // top: -height * (1 - 0.61),
             width: DRAWER_WIDTH,
             height,
             borderTopLeftRadius: theme.borderRadii.xl,

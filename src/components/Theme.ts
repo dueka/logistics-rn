@@ -88,6 +88,12 @@ export const theme: BaseTheme = createTheme({
       color: "text",
       textAlign: "center",
     },
+    header: {
+      fontSize: 12,
+      lineHeight: 24,
+      fontFamily: "SFProText-Semibold",
+      color: "primary",
+    },
   },
 });
 

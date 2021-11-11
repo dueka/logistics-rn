@@ -8,9 +8,9 @@ import {
   assets as authenticationAssets,
   AuthenticationNavigator,
 } from "./src/Authentication";
-import { HomeNavigator } from "./src/Home";
+import { HomeNavigator, assets as homeAssets } from "./src/Home";
 import { AppRoutes } from "./src/components/Navigation";
-const assets = [...authenticationAssets];
+const assets = [...authenticationAssets, ...homeAssets];
 const fonts = {
   "SFProText-Bold": require("./assets/fonts/SFProText-Bold.ttf"),
   "SFProText-Semibold": require("./assets/fonts/SFProText-Semibold.ttf"),
