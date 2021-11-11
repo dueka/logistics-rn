@@ -1,11 +1,16 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { Box, Header } from "../../components";
+import { HomeNavigationProps } from "../../components/Navigation";
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }: HomeNavigationProps<"HomeScreen">) => {
   return (
-    <View style={{ flex: 1, backgroundColor: "red" }}>
-      <Text></Text>
-    </View>
+    <Box flex={1} backgroundColor="white">
+      <Header
+        title="Home"
+        left={{ icon: "menu", onPress: () => navigation.openDrawer() }}
+        right={{ icon: "camera", onPress: () => true }}
+      />
+    </Box>
   );
 };
 

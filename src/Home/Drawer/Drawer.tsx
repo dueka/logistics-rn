@@ -1,6 +1,9 @@
+import { useNavigation } from "@react-navigation/core";
+import { DrawerActions } from "@react-navigation/routers";
 import React from "react";
 import { Image, Dimensions } from "react-native";
 import { Box, Header, RoundedIconButton, Text } from "../../components";
+import { HomeNavigationProps } from "../../components/Navigation";
 import { theme } from "../../components/Theme";
 import DrawerItem, { DrawerItemProps } from "./DrawerItem";
 
@@ -37,6 +40,7 @@ const items: DrawerItemProps[] = [
 ];
 
 const DrawerContent = () => {
+  const navigation = useNavigation();
   return (
     <Box flex={1}>
       <Box flex={0.2} backgroundColor="white">
@@ -51,8 +55,12 @@ const DrawerContent = () => {
         >
           <Header
             title="Profile"
-            left={{ icon: "x", onPress: () => true }}
+            left={{
+              icon: "x",
+              onPress: () => navigation.dispatch(DrawerActions.closeDrawer()),
+            }}
             right={{ onPress: () => true }}
+            dark
           />
         </Box>
       </Box>

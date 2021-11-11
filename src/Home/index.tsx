@@ -10,6 +10,7 @@ export const HomeNavigator = () => (
   <Drawer.Navigator
     screenOptions={{
       drawerStyle: { width: DRAWER_WIDTH },
+      headerShown: false,
     }}
     drawerContent={() => <DrawerContent />}
     initialRouteName="HomeScreen"
