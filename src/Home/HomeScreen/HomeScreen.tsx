@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Header } from "../../components";
 import { HomeNavigationProps } from "../../components/Navigation";
+import Background from "./Background";
 
 const HomeScreen = ({ navigation }: HomeNavigationProps<"HomeScreen">) => {
   return (
@@ -10,6 +11,9 @@ const HomeScreen = ({ navigation }: HomeNavigationProps<"HomeScreen">) => {
         left={{ icon: "menu", onPress: () => navigation.openDrawer() }}
         right={{ icon: "camera", onPress: () => true }}
       />
+      <Box flex={1}>
+        <Background />
+      </Box>
     </Box>
   );
 };
