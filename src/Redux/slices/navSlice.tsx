@@ -1,5 +1,5 @@
+import { RootStateOrAny } from "react-redux";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
 const navSlice = createSlice({
   name: "nav",
   initialState: {
@@ -23,3 +23,9 @@ const navSlice = createSlice({
 export const { setOrigin, setDestination, setTravelTimeInformation } =
   navSlice.actions;
 export default navSlice.reducer;
+
+export const selectOrigin = (state: RootStateOrAny) => state.nav.origin;
+export const selectDestination = (state: RootStateOrAny) =>
+  state.nav.destination;
+export const selectTravelTimeInformation = (state: RootStateOrAny) =>
+  state.nav.travelTimeInformation;
