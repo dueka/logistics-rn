@@ -1,8 +1,10 @@
 import React from "react";
+// import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { Box, Header } from "../../components";
 import { HomeNavigationProps } from "../../components/Navigation";
 import Background from "./Background";
-import Card from "./Card";
+import HomeNavigation from "./HomeNavigation";
+// import { GOOGLE_MAPS_APIKEY } from "react-native-dotenv";
 
 const HomeScreen = ({ navigation }: HomeNavigationProps<"HomeScreen">) => {
   return (
@@ -14,9 +16,7 @@ const HomeScreen = ({ navigation }: HomeNavigationProps<"HomeScreen">) => {
       />
       <Box flex={1}>
         <Background />
-        <Card position={1} />
-        <Card position={0.5} />
-        <Card position={0} />
+        <HomeNavigation />
       </Box>
     </Box>
   );

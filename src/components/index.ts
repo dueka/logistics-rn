@@ -5,3 +5,4 @@ export { Text, Box, useTheme, makeStyles } from "./Theme";
 export { default as RoundedIcon } from "./RoundedIcon";
 export { default as RoundedIconButton } from "./RoundedIconButton";
 export { default as Header } from "./Header";
+export { default as HomeOptions } from "./HomeOptions";
