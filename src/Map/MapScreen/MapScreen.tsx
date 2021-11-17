@@ -1,8 +1,9 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
-import { Box, Map, NavigateCard } from "../../components";
+import { Box, NavigateCard } from "../../components";
 import { HomeNavigationProps } from "../../components/Navigation";
 import RideOptionsCard from "../../components/RideOptionsCard";
+import Map from "./Map";
 
 const MapScreen = ({ navigation }: HomeNavigationProps<"MapScreen">) => {
   const Stack = createStackNavigator();

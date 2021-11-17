@@ -1,5 +1,4 @@
 import React from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
 import tw from "tailwind-react-native-classnames";
 import { GOOGLE_MAPS_APIKEY } from "react-native-dotenv";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";

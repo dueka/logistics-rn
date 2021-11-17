@@ -10,12 +10,6 @@ import { HomeNavigationProps } from "./Navigation";
 import { useSelector } from "react-redux";
 import { selectOrigin } from "../Redux/slices/navSlice";
 
-interface HomeOptionsProps {
-  id: string;
-  title: string;
-  image: string;
-  screen: string;
-}
 const data = [
   {
     id: "1",
@@ -35,31 +29,28 @@ const HomeOptions = () => {
   const navigation = useNavigation();
   const origin = useSelector(selectOrigin);
   return (
-    <Box>
-      <FlatList
-        data={data}
-        horizontal
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            style={tw`p-2 pl-6 bg-black pb-8 pt-4 m-2 w-40 rounded-xl`}
-            onPress={() => navigation.navigate(item.screen)}
-            disabled={!origin}
-          >
-            {/* <Box style={tw`${!origin && "opacity-20"}`}> */}
-            <Box style={tw`${!origin && "opacity-20"}`}>
-              <Image style={{ width: 120, height: 120 }} source={item.image} />
-              <Text variant="title2" color="white">
-                {item.title}
-              </Text>
-              <Box justifyContent="center">
-                <Icon name="arrow-right" size={50} color="white" />
-              </Box>
+    <FlatList
+      data={data}
+      horizontal
+      keyExtractor={(item) => item.id}
+      renderItem={({ item }) => (
+        <TouchableOpacity
+          style={tw`p-2 pl-6 bg-black pb-8 pt-4 m-2 w-40 rounded-xl`}
+          onPress={() => navigation.navigate(item.screen)}
+          disabled={!origin}
+        >
+          <Box style={tw`${!origin && "opacity-20"}`}>
+            <Image style={{ width: 120, height: 120 }} source={item.image} />
+            <Text variant="title2" color="white">
+              {item.title}
+            </Text>
+            <Box justifyContent="center">
+              <Icon name="arrow-right" size={50} color="white" />
             </Box>
-          </TouchableOpacity>
-        )}
-      />
-    </Box>
+          </Box>
+        </TouchableOpacity>
+      )}
+    />
   );
 };
 

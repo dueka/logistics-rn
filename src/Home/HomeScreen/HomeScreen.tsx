@@ -2,6 +2,7 @@ import React from "react";
 import { GOOGLE_MAPS_APIKEY } from "react-native-dotenv";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { Box, Header } from "../../components";
+import NavFavourites from "../../components/NavFavourites";
 import { HomeNavigationProps } from "../../components/Navigation";
 import { setDestination, setOrigin } from "../../Redux/slices/navSlice";
 import { useAppDispatch } from "../../Redux/store";
@@ -32,8 +33,6 @@ const HomeScreen = ({ navigation }: HomeNavigationProps<"HomeScreen">) => {
             minLength={2}
             enablePoweredByContainer={false}
             onPress={(data, details = null) => {
-              // 'details' is provided when fetchDetails = true
-              console.log(data, details);
               dispatch(
                 setOrigin({
                   location: details?.geometry.location,
@@ -50,6 +49,7 @@ const HomeScreen = ({ navigation }: HomeNavigationProps<"HomeScreen">) => {
             nearbyPlacesAPI="GooglePlacesSearch"
             debounce={400}
           />
+          <NavFavourites />
         </Box>
       </Box>
     </Box>

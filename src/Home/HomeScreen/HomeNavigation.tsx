@@ -8,8 +8,6 @@ const width = wWidth * 1;
 const height = width * (500 / 294);
 const borderRadius = 24;
 
-interface HomeNavigationProps {}
-
 const HomeNavigation = () => {
   const backgroundColor = "secondary";
 

@@ -3,8 +3,8 @@ import MapView, { Marker } from "react-native-maps";
 import { useSelector } from "react-redux";
 import MapViewDirections from "react-native-maps-directions";
 import { GOOGLE_MAPS_APIKEY } from "react-native-dotenv";
-import { Box } from ".";
-import { selectDestination, selectOrigin } from "../Redux/slices/navSlice";
+import { Box } from "../../components";
+import { selectDestination, selectOrigin } from "../../Redux/slices/navSlice";
 
 const Map = () => {
   const origin = useSelector(selectOrigin);
