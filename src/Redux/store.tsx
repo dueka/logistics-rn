@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { useDispatch } from "react-redux";
 import navReducer from "./slices/navSlice";
 
 export const store = configureStore({
@@ -6,3 +7,6 @@ export const store = configureStore({
     nav: navReducer,
   },
 });
+
+export type AppDispatch = typeof store.dispatch;
+export const useAppDispatch = () => useDispatch<AppDispatch>();

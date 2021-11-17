@@ -1,14 +1,15 @@
 import React from "react";
-import { View } from "react-native";
 import { GOOGLE_MAPS_APIKEY } from "react-native-dotenv";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { Box, Header } from "../../components";
 import { HomeNavigationProps } from "../../components/Navigation";
+import { setDestination, setOrigin } from "../../Redux/slices/navSlice";
+import { useAppDispatch } from "../../Redux/store";
 import Background from "./Background";
 import HomeNavigation from "./HomeNavigation";
 
 const HomeScreen = ({ navigation }: HomeNavigationProps<"HomeScreen">) => {
-  console.log(GOOGLE_MAPS_APIKEY);
+  const dispatch = useAppDispatch();
   return (
     <Box flex={1} backgroundColor="white">
       <Header
@@ -28,10 +29,20 @@ const HomeScreen = ({ navigation }: HomeNavigationProps<"HomeScreen">) => {
                 fontSize: 18,
               },
             }}
+            minLength={2}
+            enablePoweredByContainer={false}
             onPress={(data, details = null) => {
               // 'details' is provided when fetchDetails = true
               console.log(data, details);
+              dispatch(
+                setOrigin({
+                  location: details?.geometry.location,
+                  description: data.description,
+                })
+              );
+              dispatch(setDestination(null));
             }}
+            fetchDetails={true}
             query={{
               key: GOOGLE_MAPS_APIKEY,
               language: "en",
