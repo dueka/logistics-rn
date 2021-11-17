@@ -37,4 +37,6 @@ export type AuthenticationRoutes = {
 export type HomeRoutes = {
   HomeScreen: undefined;
   MapScreen: undefined;
+  RideOptionsCard: undefined;
+  NavigateCard: undefined;
 };

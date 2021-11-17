@@ -1,24 +1,44 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import MapView, { Marker } from "react-native-maps";
 import { useSelector } from "react-redux";
+import MapViewDirections from "react-native-maps-directions";
+import { GOOGLE_MAPS_APIKEY } from "react-native-dotenv";
 import { Box } from ".";
-import { selectOrigin } from "../Redux/slices/navSlice";
+import { selectDestination, selectOrigin } from "../Redux/slices/navSlice";
 
 const Map = () => {
   const origin = useSelector(selectOrigin);
-  console.log(origin);
+  const destination = useSelector(selectDestination);
+  const mapRef = useRef(null);
+  useEffect(() => {
+    if (!origin || !destination) return;
+    // Zoom and fit to markers
+    mapRef.current.fitToSuppliedMarkers(["origin", "description"], {
+      edgePadding: { top: 50, right: 50, bottom: 50, left: 50 },
+    });
+  }, [origin, destination]);
   return (
     <Box flex={1}>
       <MapView
+        ref={mapRef}
         flex={1}
         mapType="mutedStandard"
         initialRegion={{
-          latitude: origin.location.lat,
-          longitude: origin.location.lng,
+          latitude: origin?.location.lat,
+          longitude: origin?.location.lng,
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}
       >
+        {origin && destination && (
+          <MapViewDirections
+            origin={origin.description}
+            destination={destination.description}
+            apikey={GOOGLE_MAPS_APIKEY}
+            strokeWidth={3}
+            strokeColor="black"
+          />
+        )}
         {origin?.location && (
           <Marker
             coordinate={{
@@ -28,6 +48,17 @@ const Map = () => {
             title="Origin"
             description={origin.description}
             identifier="origin"
+          />
+        )}
+        {destination?.location && (
+          <Marker
+            coordinate={{
+              latitude: destination.location.lat,
+              longitude: destination.location.lng,
+            }}
+            title="Destination"
+            description={destination.description}
+            identifier="Destination"
           />
         )}
       </MapView>
