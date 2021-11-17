@@ -1,5 +1,6 @@
 import React from "react";
-import { GOOGLE_MAPS_APIKEY } from "@env";
+import { View } from "react-native";
+import { GOOGLE_MAPS_APIKEY } from "react-native-dotenv";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { Box, Header } from "../../components";
 import { HomeNavigationProps } from "../../components/Navigation";
@@ -7,6 +8,7 @@ import Background from "./Background";
 import HomeNavigation from "./HomeNavigation";
 
 const HomeScreen = ({ navigation }: HomeNavigationProps<"HomeScreen">) => {
+  console.log(GOOGLE_MAPS_APIKEY);
   return (
     <Box flex={1} backgroundColor="white">
       <Header
@@ -17,13 +19,10 @@ const HomeScreen = ({ navigation }: HomeNavigationProps<"HomeScreen">) => {
 
       <Box flex={1}>
         <Background />
-
         <HomeNavigation />
-        <Box>
+        <Box flex={1}>
           <GooglePlacesAutocomplete
             placeholder="Search"
-            nearbyPlacesAPI="GooglePlacesSearch"
-            debounce={400}
             styles={{
               textInput: {
                 fontSize: 18,
@@ -37,6 +36,8 @@ const HomeScreen = ({ navigation }: HomeNavigationProps<"HomeScreen">) => {
               key: GOOGLE_MAPS_APIKEY,
               language: "en",
             }}
+            nearbyPlacesAPI="GooglePlacesSearch"
+            debounce={400}
           />
         </Box>
       </Box>
