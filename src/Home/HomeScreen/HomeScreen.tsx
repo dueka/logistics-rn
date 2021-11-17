@@ -20,8 +20,8 @@ const HomeScreen = ({ navigation }: HomeNavigationProps<"HomeScreen">) => {
 
       <Box flex={1}>
         <Background />
-        <HomeNavigation />
         <Box flex={1}>
+          <HomeNavigation />
           <GooglePlacesAutocomplete
             placeholder="Search"
             styles={{

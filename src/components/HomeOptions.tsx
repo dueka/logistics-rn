@@ -7,6 +7,8 @@ import tw from "tailwind-react-native-classnames";
 import { Text } from ".";
 import { Box } from "./Theme";
 import { HomeNavigationProps } from "./Navigation";
+import { useSelector } from "react-redux";
+import { selectOrigin } from "../Redux/slices/navSlice";
 
 interface HomeOptionsProps {
   id: string;
@@ -31,6 +33,7 @@ const data = [
 
 const HomeOptions = () => {
   const navigation = useNavigation();
+  const origin = useSelector(selectOrigin);
   return (
     <Box>
       <FlatList
@@ -41,8 +44,10 @@ const HomeOptions = () => {
           <TouchableOpacity
             style={tw`p-2 pl-6 bg-black pb-8 pt-4 m-2 w-40 rounded-xl`}
             onPress={() => navigation.navigate(item.screen)}
+            disabled={!origin}
           >
-            <Box>
+            {/* <Box style={tw`${!origin && "opacity-20"}`}> */}
+            <Box style={tw`${!origin && "opacity-20"}`}>
               <Image style={{ width: 120, height: 120 }} source={item.image} />
               <Text variant="title2" color="white">
                 {item.title}
