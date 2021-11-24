@@ -7,3 +7,4 @@ export { default as RoundedIconButton } from "./RoundedIconButton";
 export { default as Header } from "./Header";
 export { default as HomeOptions } from "./HomeOptions";
 export { default as NavigateCard } from "./NavigateCard";
+export { default as SearchComponent } from "./SearchComponent";

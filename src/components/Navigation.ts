@@ -39,4 +39,5 @@ export type HomeRoutes = {
   MapScreen: undefined;
   RideOptionsCard: undefined;
   NavigateCard: undefined;
+  SearchScreen: undefined;
 };

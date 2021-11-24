@@ -4,6 +4,7 @@ import HomeScreen from "./HomeScreen";
 import DrawerContent, { DRAWER_WIDTH } from "./Drawer/Drawer";
 import { HomeRoutes } from "../components/Navigation";
 import { MapScreen } from "../Map/MapScreen";
+import { SearchComponent } from "../components";
 
 const Drawer = createDrawerNavigator<HomeRoutes>();
 export { assets } from "./Drawer";
@@ -18,5 +19,6 @@ export const HomeNavigator = () => (
   >
     <Drawer.Screen name="HomeScreen" component={HomeScreen} />
     <Drawer.Screen name="MapScreen" component={MapScreen} />
+    <Drawer.Screen name="SearchScreen" component={SearchComponent} />
   </Drawer.Navigator>
 );

@@ -6,7 +6,6 @@ import { Feather as Icon } from "@expo/vector-icons";
 import tw from "tailwind-react-native-classnames";
 import { Text } from ".";
 import { Box } from "./Theme";
-import { HomeNavigationProps } from "./Navigation";
 import { useSelector } from "react-redux";
 import { selectOrigin } from "../Redux/slices/navSlice";
 

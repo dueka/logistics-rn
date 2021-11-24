@@ -1,4 +1,5 @@
 import React from "react";
+import { BorderlessButton } from "react-native-gesture-handler";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Box, RoundedIconButton, Text } from ".";
 
@@ -7,7 +8,10 @@ interface HeaderProps {
     icon: string;
     onPress: () => void;
   };
-  title: string;
+  title: {
+    titleText: string;
+    onPress: () => void;
+  };
   right: {
     icon?: string;
     onPress: () => void;
@@ -34,9 +38,11 @@ const Header = ({ title, left, right, dark }: HeaderProps) => {
         onPress={left.onPress}
         {...{ color, backgroundColor }}
       />
-      <Text variant="header" {...{ color }}>
-        {title.toUpperCase()}
-      </Text>
+      <BorderlessButton onPress={title.onPress}>
+        <Text variant="header" {...{ color }}>
+          {title && title.titleText && title.titleText.toUpperCase()}
+        </Text>
+      </BorderlessButton>
       <RoundedIconButton
         size={44}
         iconRatio={0.5}
