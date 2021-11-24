@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
+import { Alert, Dimensions, Modal } from "react-native";
+import { GOOGLE_MAPS_APIKEY } from "react-native-dotenv";
 import { BorderlessButton } from "react-native-gesture-handler";
+import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Box, RoundedIconButton, Text } from ".";
+import { setDestination, setOrigin } from "../Redux/slices/navSlice";
+import { useAppDispatch } from "../Redux/store";
 
 interface HeaderProps {
   left: {
@@ -20,9 +25,14 @@ interface HeaderProps {
 }
 
 const Header = ({ title, left, right, dark }: HeaderProps) => {
+  const dispatch = useAppDispatch();
+  const [modalVisible, setModalVisible] = useState(false);
+  const { width, height } = Dimensions.get("window");
+
   const insets = useSafeAreaInsets();
   const color = dark ? "white" : "primary";
   const backgroundColor = dark ? "primary" : "lightGrey";
+
   return (
     <Box
       flexDirection="row"
@@ -38,7 +48,89 @@ const Header = ({ title, left, right, dark }: HeaderProps) => {
         onPress={left.onPress}
         {...{ color, backgroundColor }}
       />
-      <BorderlessButton onPress={title.onPress}>
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <Box
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+            // marginTop: 22,
+          }}
+        >
+          <Box
+            style={{
+              margin: 20,
+              borderRadius: 20,
+              padding: 35,
+              alignItems: "flex-end",
+            }}
+          >
+            <Box
+              style={{
+                flex: 1,
+                backgroundColor: "secondary",
+                justifyContent: "flex-end",
+                shadowOpacity: 0.25,
+              }}
+            >
+              <Box backgroundColor="primary">
+                <GooglePlacesAutocomplete
+                  placeholder="Search"
+                  styles={{
+                    textInput: {
+                      fontSize: 18,
+                      color: "black",
+                    },
+                  }}
+                  minLength={2}
+                  enablePoweredByContainer={false}
+                  onPress={(data, details = null) => {
+                    dispatch(
+                      setOrigin({
+                        location: details?.geometry.location,
+                        description: data.description,
+                      })
+                    );
+                    dispatch(setDestination(null));
+                  }}
+                  fetchDetails={true}
+                  query={{
+                    key: GOOGLE_MAPS_APIKEY,
+                    language: "en",
+                  }}
+                  nearbyPlacesAPI="GooglePlacesSearch"
+                  debounce={400}
+                />
+                <Box alignItems="center" padding="m">
+                  <BorderlessButton
+                    onPress={() => setModalVisible(!modalVisible)}
+                  >
+                    <Text variant="header" color="white">
+                      HIDE
+                    </Text>
+                  </BorderlessButton>
+                </Box>
+              </Box>
+
+              <Box
+                style={{
+                  width: width - 30,
+                }}
+              ></Box>
+            </Box>
+          </Box>
+        </Box>
+      </Modal>
+      <BorderlessButton onPress={() => setModalVisible(true)}>
         <Text variant="header" {...{ color }}>
           {title && title.titleText && title.titleText.toUpperCase()}
         </Text>

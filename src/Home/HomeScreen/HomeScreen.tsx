@@ -9,7 +9,7 @@ const HomeScreen = ({ navigation }: HomeNavigationProps<"HomeScreen">) => {
       <Header
         title={{
           titleText: "Search",
-          onPress: () => navigation.navigate("SearchScreen"),
+          onPress: () => true,
         }}
         left={{ icon: "menu", onPress: () => navigation.openDrawer() }}
         right={{ icon: "camera", onPress: () => true }}
