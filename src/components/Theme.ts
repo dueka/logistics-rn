@@ -79,6 +79,12 @@ export const theme: BaseTheme = createTheme({
       fontFamily: "SFProText-Semibold",
       color: "primary",
     },
+    title3: {
+      fontSize: 20,
+      lineHeight: 24,
+      fontFamily: "SFProText-Semibold",
+      color: "primary",
+    },
     body: {
       fontSize: 16,
       lineHeight: 24,

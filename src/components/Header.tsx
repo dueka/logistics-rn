@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Alert, Dimensions, Modal } from "react-native";
+import { Alert, Dimensions, Modal, StyleSheet } from "react-native";
 import { GOOGLE_MAPS_APIKEY } from "react-native-dotenv";
 import { BorderlessButton } from "react-native-gesture-handler";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
@@ -77,44 +77,58 @@ const Header = ({ title, left, right, dark }: HeaderProps) => {
             <Box
               style={{
                 flex: 1,
-                backgroundColor: "secondary",
+                backgroundColor: "black",
                 justifyContent: "flex-end",
                 shadowOpacity: 0.25,
               }}
             >
-              <Box backgroundColor="primary">
-                <GooglePlacesAutocomplete
-                  placeholder="Search"
-                  styles={{
-                    textInput: {
-                      fontSize: 18,
-                      color: "black",
-                    },
-                  }}
-                  minLength={2}
-                  enablePoweredByContainer={false}
-                  onPress={(data, details = null) => {
-                    dispatch(
-                      setOrigin({
-                        location: details?.geometry.location,
-                        description: data.description,
-                      })
-                    );
-                    dispatch(setDestination(null));
-                  }}
-                  fetchDetails={true}
-                  query={{
-                    key: GOOGLE_MAPS_APIKEY,
-                    language: "en",
-                  }}
-                  nearbyPlacesAPI="GooglePlacesSearch"
-                  debounce={400}
-                />
+              <Box backgroundColor="grey">
+                <Box marginTop="m" margin="s">
+                  <Text color="black" variant="title3">
+                    Enter or Paste a Search Term
+                  </Text>
+                </Box>
+                <Box marginTop="l" flex={1}>
+                  <GooglePlacesAutocomplete
+                    placeholder="Search"
+                    styles={{
+                      textInputContainer: {
+                        backgroundColor: "grey",
+                      },
+                      textInput: {
+                        height: 38,
+                        color: "#5d5d5d",
+                        fontSize: 16,
+                      },
+                      predefinedPlacesDescription: {
+                        color: "#1faadb",
+                      },
+                    }}
+                    minLength={2}
+                    enablePoweredByContainer={false}
+                    onPress={(data, details = null) => {
+                      dispatch(
+                        setOrigin({
+                          location: details?.geometry.location,
+                          description: data.description,
+                        })
+                      );
+                      dispatch(setDestination(null));
+                    }}
+                    fetchDetails={true}
+                    query={{
+                      key: GOOGLE_MAPS_APIKEY,
+                      language: "en",
+                    }}
+                    nearbyPlacesAPI="GooglePlacesSearch"
+                    debounce={400}
+                  />
+                </Box>
                 <Box alignItems="center" padding="m">
                   <BorderlessButton
                     onPress={() => setModalVisible(!modalVisible)}
                   >
-                    <Text variant="header" color="white">
+                    <Text variant="header" color="black">
                       HIDE
                     </Text>
                   </BorderlessButton>
@@ -125,7 +139,7 @@ const Header = ({ title, left, right, dark }: HeaderProps) => {
                 style={{
                   width: width - 30,
                 }}
-              ></Box>
+              />
             </Box>
           </Box>
         </Box>
@@ -149,3 +163,20 @@ const Header = ({ title, left, right, dark }: HeaderProps) => {
 Header.defaultProps = { dark: false };
 
 export default Header;
+
+const toInputBoxStyles = StyleSheet.create({
+  container: {
+    backgroundColor: "white",
+    paddingTop: 20,
+    flex: 0,
+  },
+  textInput: {
+    backgroundColor: "#DDDDDF",
+    borderRadius: 0,
+    fontSize: 0,
+  },
+  textInputContainer: {
+    paddingHorizontal: 20,
+    paddingBottom: 0,
+  },
+});
